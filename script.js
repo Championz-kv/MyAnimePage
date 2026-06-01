@@ -166,7 +166,7 @@ function renderAnimeGrid() {
 
         card.innerHTML = `
             <img src="${anime.image}">
-            <p>${anime.name}</p>
+            <p>${anime.name} (${anime.released.slice(0,4)})</p>
         `;
 
         const columnIndex = index % numberOfColumns;
@@ -194,7 +194,7 @@ function renderAnimeGrid() {
 
             card.innerHTML = `
                 <img src="${anime.image}">
-                <p>${anime.name}</p>
+                <p>${anime.name} (${anime.released.slice(0,4)})</p>
             `;
 
             columns[positions[i]].appendChild(card);
