@@ -1,128 +1,139 @@
 const animesascending = [
-    { name: "365 Days to the Wedding", image: "images/365-days-to-the-wedding.jpg" },
-    { name: "86", image: "images/86.jpg" },
+    { name: "365 Days to the Wedding", image: "images/365-days-to-the-wedding.jpg", released: "2024-10" },
+    { name: "86", image: "images/86.jpg", released: "2021-04" },
 
-    { name: "Agents of the Four Seasons: Dance of Spring", image: "images/agents-of-the-four-seasons.jpg" },
-    { name: "Akudama Drive", image: "images/akudama-drive.jpg" },
-    { name: "Alya Sometimes Hides Her Feelings in Russian", image: "images/alya-sometimes-hides-her-feelings-in-russian.jpg" },
-    { name: "Ameku M.D.: Doctor Detective", image: "images/ameku-md-doctor-detective.jpg" },
-    { name: "The Angel Next Door Spoils Me Rotten", image: "images/the-angel-next-door-spoils-me-rotten.jpg" },
-    { name: "Another", image: "images/another.png" },
-    { name: "The Apothecary Diaries", image: "images/the-apothecary-diaries.jpg" },
-    { name: "Assassination Classroom", image: "images/assassination-classroom.jpg" },
+    { name: "Agents of the Four Seasons: Dance of Spring", image: "images/agents-of-the-four-seasons.jpg", released: "2026-03" },
+    { name: "Akudama Drive", image: "images/akudama-drive.jpg", released: "2020-10" },
+    { name: "Alya Sometimes Hides Her Feelings in Russian", image: "images/alya-sometimes-hides-her-feelings-in-russian.jpg", released: "2024-07" },
+    { name: "Ameku M.D.: Doctor Detective", image: "images/ameku-md-doctor-detective.jpg", released: "2025-01" },
+    { name: "The Angel Next Door Spoils Me Rotten", image: "images/the-angel-next-door-spoils-me-rotten.jpg", released: "2023-01" },
+    { name: "Another", image: "images/another.png", released: "2012-01" },
+    { name: "The Apothecary Diaries", image: "images/the-apothecary-diaries.jpg", released: "2023-10" },
+    { name: "Assassination Classroom", image: "images/assassination-classroom.jpg", released: "2015-01" },
 
-    { name: "The Beginning After the End", image: "images/the-beginning-after-the-end.jpg" },
-    { name: "Blue Box", image: "images/blue-box.jpg" },
-    { name: "Bocchi the Rock!", image: "images/bocchi-the-rock.jpg" },
-    { name: "Bubble", image: "images/bubble.jpg" },
-    { name: "Buddy Daddies", image: "images/buddy-daddies.jpg" },
-    { name: "Bungo Stray Dogs", image: "images/bungo-stray-dogs.jpg" },
+    { name: "The Beginning After the End", image: "images/the-beginning-after-the-end.jpg", released: "2025-04" },
+    { name: "Blue Box", image: "images/blue-box.jpg", released: "2024-10" },
+    { name: "Bocchi the Rock!", image: "images/bocchi-the-rock.jpg", released: "2022-10" },
+    { name: "Bubble", image: "images/bubble.jpg", released: "2022-04" },
+    { name: "Buddy Daddies", image: "images/buddy-daddies.jpg", released: "2023-01" },
+    { name: "Bungo Stray Dogs", image: "images/bungo-stray-dogs.jpg", released: "2016-04" },
 
-    { name: "The Case Study of Vanitas", image: "images/the-case-study-of-vanitas.jpg" },
-    { name: "Chainsaw Man", image: "images/chainsaw-man.png" },
-    { name: "Classroom of the Elite", image: "images/classroom-of-the-elite.jpg" },
-    { name: "Colorful Stage! The Movie: A Miku Who Can't Sing", image: "images/colorful-stage-movie.jpg" },
-    { name: "Cosmic Princess Kaguya!", image: "images/cosmic-princess-kaguya.jpg" },
+    { name: "The Case Study of Vanitas", image: "images/the-case-study-of-vanitas.jpg", released: "2021-07" },
+    { name: "Chainsaw Man", image: "images/chainsaw-man.png", released: "2022-10" },
+    { name: "Classroom of the Elite", image: "images/classroom-of-the-elite.jpg", released: "2017-07" },
+    { name: "Colorful Stage! The Movie: A Miku Who Can't Sing", image: "images/colorful-stage-movie.jpg", released: "2025-01" },
+    { name: "Cosmic Princess Kaguya!", image: "images/cosmic-princess-kaguya.jpg", released: "2026-01" },
 
-    { name: "Dandadan", image: "images/dandadan.jpg" },
-    { name: "Darling in the FRANXX", image: "images/darling-in-the-franxx.png" },
-    { name: "Death Note", image: "images/death-note.jpg" },
-    { name: "Demon Lord 2099", image: "images/demon-lord-2099.jpg" },
-    { name: "Demon Slayer", image: "images/demon-slayer.jpg" },
-    { name: "Demon Sword Master of Excalibur Academy", image: "images/demon-sword-master.jpg" },
-    { name: "The Detective Is Already Dead", image: "images/the-detective-is-already-dead.jpg" },
+    { name: "Dandadan", image: "images/dandadan.jpg", released: "2024-10" },
+    { name: "Darling in the FRANXX", image: "images/darling-in-the-franxx.png", released: "2018-01" },
+    { name: "Death Note", image: "images/death-note.jpg", released: "2006-10" },
+    { name: "Demon Lord 2099", image: "images/demon-lord-2099.jpg", released: "2024-10" },
+    { name: "Demon Slayer", image: "images/demon-slayer.jpg", released: "2019-04" },
+    { name: "Demon Sword Master of Excalibur Academy", image: "images/demon-sword-master.jpg", released: "2023-10" },
+    { name: "The Detective Is Already Dead", image: "images/the-detective-is-already-dead.jpg", released: "2021-07" },
 
-    { name: "Erased", image: "images/erased.jpg" },
+    { name: "Erased", image: "images/erased.jpg", released: "2016-01" },
 
-    { name: "The Fragrant Flower Blooms with Dignity", image: "images/the-fragrant-flower-blooms-with-dignity.jpg" },
-    { name: "Frieren: Beyond Journey's End", image: "images/frieren.jpg" },
-    { name: "Fruits Basket", image: "images/fruits-basket.jpg" },
+    { name: "The Fragrant Flower Blooms with Dignity", image: "images/the-fragrant-flower-blooms-with-dignity.jpg", released: "2025-07" },
+    { name: "Frieren: Beyond Journey's End", image: "images/frieren.jpg", released: "2023-09" },
+    { name: "Fruits Basket", image: "images/fruits-basket.jpg", released: "2019-04" },
 
-    { name: "The Garden of Words", image: "images/the-garden-of-words.jpg" },
-    { name: "Grand Blue Dreaming", image: "images/grand-blue-dreaming.png" },
+    { name: "The Garden of Words", image: "images/the-garden-of-words.jpg", released: "2013-05" },
+    { name: "Grand Blue Dreaming", image: "images/grand-blue-dreaming.png", released: "2018-07" },
 
-    { name: "Hana Kimi", image: "images/hana-kimi.jpg" },
-    { name: "Headhunted to Another World: From Salaryman to Big Four!", image: "images/headhunted-to-another-world.jpg" },
-    { name: "Hell's Paradise", image: "images/hells-paradise.jpg" },
-    { name: "Hello World", image: "images/hello-world.png" },
-    { name: "Honey Lemon Soda", image: "images/honey-lemon-soda.jpg" },
-    { name: "Horimiya", image: "images/horimiya.jpg" },
+    { name: "Hana Kimi", image: "images/hana-kimi.jpg", released: "2026-01" },
+    { name: "Headhunted to Another World: From Salaryman to Big Four!", image: "images/headhunted-to-another-world.jpg", released: "2025-01" },
+    { name: "Hell's Paradise", image: "images/hells-paradise.jpg", released: "2023-04" },
+    { name: "Hello World", image: "images/hello-world.png", released: "2019-09" },
+    { name: "Honey Lemon Soda", image: "images/honey-lemon-soda.jpg", released: "2025-01" },
+    { name: "Horimiya", image: "images/horimiya.jpg", released: "2021-01" },
 
-    { name: "I Made Friends with the Second Prettiest Girl in My Class", image: "images/second-prettiest-girl.jpg" },
-    { name: "I Want to Eat Your Pancreas", image: "images/i-want-to-eat-your-pancreas.jpg" },
-    { name: "If My Wife Becomes an Elementary School Student", image: "images/if-my-wife-becomes-an-elementary-school-student.jpg" },
+    { name: "I Made Friends with the Second Prettiest Girl in My Class", image: "images/second-prettiest-girl.jpg", released: "2026-04" },
+    { name: "I Want to Eat Your Pancreas", image: "images/i-want-to-eat-your-pancreas.jpg", released: "2018-09" },
+    { name: "If My Wife Becomes an Elementary School Student", image: "images/if-my-wife-becomes-an-elementary-school-student.jpg", released: "2024-10" },
 
-    { name: "Jingai-san no Yome", image: "images/jingai-san-no-yome.jpg" },
-    { name: "Josee, the Tiger and the Fish", image: "images/josee-the-tiger-and-the-fish.jpg" },
-    { name: "Jujutsu Kaisen", image: "images/jujutsu-kaisen.jpg" },
+    { name: "Jingai-san no Yome", image: "images/jingai-san-no-yome.jpg", released: "2018-10" },
+    { name: "Josee, the Tiger and the Fish", image: "images/josee-the-tiger-and-the-fish.jpg", released: "2020-12" },
+    { name: "Jujutsu Kaisen", image: "images/jujutsu-kaisen.jpg", released: "2020-10" },
 
-    { name: "Kaguya-sama: Love Is War", image: "images/kaguya-sama-love-is-war.png" },
-    { name: "Kaiju No. 8", image: "images/kaiju-no-8.jpg" },
-    { name: "King's Game", image: "images/kings-game.jpg" },
+    { name: "Kaguya-sama: Love Is War", image: "images/kaguya-sama-love-is-war.png", released: "2019-01" },
+    { name: "Kaiju No. 8", image: "images/kaiju-no-8.jpg", released: "2024-04" },
+    { name: "King's Game", image: "images/kings-game.jpg", released: "2017-10" },
 
-    { name: "Let This Grieving Soul Retire", image: "images/let-this-grieving-soul-retire.png" },
-    { name: "Liar Game", image: "images/liar-game.png" },
+    { name: "Let This Grieving Soul Retire", image: "images/let-this-grieving-soul-retire.png", released: "2024-10" },
+    { name: "Liar Game", image: "images/liar-game.png", released: "2026-04" },
 
-    { name: "Maid Sama!", image: "images/maid-sama.png" },
-    { name: "Marriagetoxin", image: "images/marriagetoxin.jpg" },
-    { name: "Mecha-Ude: Mechanical Arms", image: "images/mecha-ude.jpg" },
-    { name: "Monthly Girls' Nozaki-kun", image: "images/monthly-girls-nozaki-kun.png" },
-    { name: "More Than a Married Couple, but Not Lovers", image: "images/more-than-a-married-couple.jpg" },
-    { name: "The Most Notorious Talker Runs the World's Greatest Clan", image: "images/the-most-notorious-talker.jpg" },
-    { name: "My Dress-Up Darling", image: "images/my-dress-up-darling.jpg" },
+    { name: "Maid Sama!", image: "images/maid-sama.png", released: "2010-04" },
+    { name: "Marriagetoxin", image: "images/marriagetoxin.jpg", released: "2026-04" },
+    { name: "Mecha-Ude: Mechanical Arms", image: "images/mecha-ude.jpg", released: "2024-10" },
+    { name: "Monthly Girls' Nozaki-kun", image: "images/monthly-girls-nozaki-kun.png", released: "2014-07" },
+    { name: "More Than a Married Couple, but Not Lovers", image: "images/more-than-a-married-couple.jpg", released: "2022-10" },
+    { name: "The Most Notorious Talker Runs the World's Greatest Clan", image: "images/the-most-notorious-talker.jpg", released: "2024-10" },
+    { name: "My Dress-Up Darling", image: "images/my-dress-up-darling.jpg", released: "2022-01" },
     
-    { name: "Oshi no Ko", image: "images/oshi-no-ko.jpg" },
+    { name: "Oshi no Ko", image: "images/oshi-no-ko.jpg", released: "2023-04" },
 
-    { name: "The Pet Girl of Sakurasou", image: "images/the-pet-girl-of-sakurasou.jpg" },
-    { name: "Plastic Neesan", image: "images/plastic-neesan.png" },
-    { name: "The Promised Neverland", image: "images/the-promised-neverland.jpg" },
+    { name: "The Pet Girl of Sakurasou", image: "images/the-pet-girl-of-sakurasou.jpg", released: "2012-10" },
+    { name: "Plastic Neesan", image: "images/plastic-neesan.png", released: "2011-05" },
+    { name: "The Promised Neverland", image: "images/the-promised-neverland.jpg", released: "2019-01" },
 
-    { name: "The Quintessential Quintuplets", image: "images/the-quintessential-quintuplets.png" },
+    { name: "The Quintessential Quintuplets", image: "images/the-quintessential-quintuplets.png", released: "2019-01" },
 
-    { name: "Rascal Does Not Dream Series", image: "images/rascal-does-not-dream.jpg" },
-    { name: "Rent-a-Girlfriend", image: "images/rent-a-girlfriend.jpg" },
-    { name: "Ron Kamonohashi's Forbidden Deductions", image: "images/ron-kamonohashi.jpg" },
-    { name: "Rurouni Kenshin", image: "images/rurouni-kenshin.png" },
+    { name: "Rascal Does Not Dream Series", image: "images/rascal-does-not-dream.jpg", released: "2018-10" },
+    { name: "Rent-a-Girlfriend", image: "images/rent-a-girlfriend.jpg", released: "2020-07" },
+    { name: "Ron Kamonohashi's Forbidden Deductions", image: "images/ron-kamonohashi.jpg", released: "2023-10" },
+    { name: "Rurouni Kenshin", image: "images/rurouni-kenshin.png", released: "2023-07" },
 
-    { name: "Sakamoto Days", image: "images/sakamoto-days.png" },
-    { name: "Shangri-La Frontier", image: "images/shangri-la-frontier.jpg" },
-    { name: "Shikimori's Not Just a Cutie", image: "images/shikimori.jpg" },
-    { name: "The Shiunji Family Children", image: "images/the-shiunji-family-children.jpg" },
-    { name: "Solo Leveling", image: "images/solo-leveling.png" },
-    { name: "Spy x Family", image: "images/spyxfamily.png" },
-    { name: "The Strongest Magician in the Demon Lord's Army Was a Human", image: "images/the-strongest-magician.jpg" },
-    { name: "The Summer Hikaru Died", image: "images/the-summer-hikaru-died.jpg" },
-    { name: "Summertime Rendering", image: "images/summertime-rendering.png" },
-    { name: "Suzume", image: "images/suzume.jpg" },
+    { name: "Sakamoto Days", image: "images/sakamoto-days.png", released: "2025-01" },
+    { name: "Shangri-La Frontier", image: "images/shangri-la-frontier.jpg", released: "2023-10" },
+    { name: "Shikimori's Not Just a Cutie", image: "images/shikimori.jpg", released: "2022-04" },
+    { name: "The Shiunji Family Children", image: "images/the-shiunji-family-children.jpg", released: "2025-04" },
+    { name: "Solo Leveling", image: "images/solo-leveling.png", released: "2024-01" },
+    { name: "Spy x Family", image: "images/spyxfamily.png", released: "2022-04" },
+    { name: "The Strongest Magician in the Demon Lord's Army Was a Human", image: "images/the-strongest-magician.jpg", released: "2024-07" },
+    { name: "The Summer Hikaru Died", image: "images/the-summer-hikaru-died.jpg", released: "2025-07" },
+    { name: "Summertime Rendering", image: "images/summertime-rendering.png", released: "2022-04" },
+    { name: "Suzume", image: "images/suzume.jpg", released: "2022-11" },
 
-    { name: "Takopi's Original Sin", image: "images/takopis-original-sin.jpg" },
-    { name: "Tasokare Hotel", image: "images/tasokare-hotel.jpg" },
-    { name: "That Time I Got Reincarnated as a Slime", image: "images/tensura.jpg" },
-    { name: "To Every You I've Loved Before", image: "images/to-every-you-ive-loved-before.jpg" },
-    { name: "To Me, the One Who Loved You", image: "images/to-me-the-one-who-loved-you.jpg" },
-    { name: "Toilet-Bound Hanako-kun", image: "images/toilet-bound-hanako-kun.jpg" },
-    { name: "Toradora!", image: "images/toradora.jpg" },
-    { name: "Tower of God", image: "images/tower-of-god.jpg" },
-    { name: "Trapezium", image: "images/trapezium.jpg" },
-    { name: "The Tunnel to Summer, the Exit of Goodbye", image: "images/the-tunnel-to-summer.jpg" },
+    { name: "Takopi's Original Sin", image: "images/takopis-original-sin.jpg", released: "2025-06" },
+    { name: "Tasokare Hotel", image: "images/tasokare-hotel.jpg", released: "2025-01" },
+    { name: "That Time I Got Reincarnated as a Slime", image: "images/tensura.jpg", released: "2018-10" },
+    { name: "To Every You I've Loved Before", image: "images/to-every-you-ive-loved-before.jpg", released: "2022-10" },
+    { name: "To Me, the One Who Loved You", image: "images/to-me-the-one-who-loved-you.jpg", released: "2022-10" },
+    { name: "Toilet-Bound Hanako-kun", image: "images/toilet-bound-hanako-kun.jpg", released: "2020-01" },
+    { name: "Toradora!", image: "images/toradora.jpg", released: "2008-10" },
+    { name: "Tower of God", image: "images/tower-of-god.jpg", released: "2020-04" },
+    { name: "Trapezium", image: "images/trapezium.jpg", released: "2024-05" },
+    { name: "The Tunnel to Summer, the Exit of Goodbye", image: "images/the-tunnel-to-summer.jpg", released: "2022-09" },
 
-    { name: "Weathering with You", image: "images/weathering-with-you.png" },
-    { name: "Wind Breaker", image: "images/wind-breaker.jpg" },
-    { name: "Wistoria: Wand and Sword", image: "images/wistoria.jpg" },
-    { name: "Witch Hat Atelier", image: "images/witch-hat-atelier.jpg" },
+    { name: "Weathering with You", image: "images/weathering-with-you.png", released: "2019-07" },
+    { name: "Wind Breaker", image: "images/wind-breaker.jpg", released: "2024-04" },
+    { name: "Wistoria: Wand and Sword", image: "images/wistoria.jpg", released: "2024-07" },
+    { name: "Witch Hat Atelier", image: "images/witch-hat-atelier.jpg", released: "2026-04" },
 
-    { name: "Yakuza Fiance", image: "images/yakuza-fiance.jpg" },
-    { name: "You and I Are Polar Opposites", image: "images/you-and-i-are-polar-opposites.jpg" },
-    { name: "You Are Ms. Servant", image: "images/you-are-ms-servant.jpg" },
-    { name: "Your Lie in April", image: "images/your-lie-in-april.png" },
-    { name: "Your Name", image: "images/your-name.png" },
+    { name: "Yakuza Fiance", image: "images/yakuza-fiance.jpg", released: "2024-10" },
+    { name: "You and I Are Polar Opposites", image: "images/you-and-i-are-polar-opposites.jpg", released: "2026-01" },
+    { name: "You Are Ms. Servant", image: "images/you-are-ms-servant.jpg", released: "2024-10" },
+    { name: "Your Lie in April", image: "images/your-lie-in-april.png", released: "2014-10" },
+    { name: "Your Name", image: "images/your-name.png", released: "2016-08" },
 
-    { name: "Zom 100: Bucket List of the Dead", image: "images/zom-100.png" } 
+    { name: "Zom 100: Bucket List of the Dead", image: "images/zom-100.png", released: "2023-07" }
 ];
 
 // setting anime list to display
-let ascending = true;
-let animeList = animesascending
+const SORT = { OFF: 0, ASC: 1, DESC: 2 };
+let sortState = { alpha: SORT.ASC, time: SORT.OFF };
+
+function toggleAlpha() {
+  sortState.alpha = sortState.alpha === SORT.ASC ? SORT.DESC : SORT.ASC;
+  sortState.time = SORT.OFF;
+}
+function toggleTime() {
+  sortState.time = sortState.time === SORT.DESC ? SORT.ASC : SORT.DESC;
+  sortState.alpha = SORT.OFF;
+}
+
+let animeList = [...animesascending]
 
 const numberOfColumns = 5;
 const grid = document.getElementById("anime-grid");
@@ -219,17 +230,42 @@ for (let i = 0; i < 30; i++) {
     line.style.setProperty("--line-color", color);
 }
 
-const sortBtn = document.getElementById("sort-btn");
+//buttons
+const sortBtnalpha = document.getElementById("sort-btn-alpha");
+const sortBtntime = document.getElementById("sort-btn-time");
+function togglebtn(){
+    if (sortState.alpha === 1) {
+            sortBtnalpha.textContent = "▼ A to Z"
+        }
+    else if (sortState.alpha === 2) {
+            sortBtnalpha.textContent =  "▲ Z to A"
+        }
+    else {
+            sortBtnalpha.textContent =  "Alphabetical"
+        }
+    if (sortState.time === 1) {
+            sortBtntime.textContent = "▲ Oldest first"
+        }
+    else if (sortState.time === 2) {
+            sortBtntime.textContent =  "▼ Newest first"
+        }
+    else {
+            sortBtntime.textContent =  "Released"
+        }
+}
 
-sortBtn.addEventListener("click", () => {
+//a to z button
+sortBtnalpha.addEventListener("click", () => {
+    toggleAlpha()
+    animeList = sortState.alpha===1 ? animesascending : animesascending.toReversed()
+    togglebtn()
+    renderAnimeGrid()
+});
 
-    ascending = !ascending;
-    animeList = ascending ? animesascending : animesascending.toReversed();
-
-    sortBtn.textContent =
-        ascending
-        ? "▼ Alphabetical"
-        : "▲ Alphabetical";
-
-    renderAnimeGrid();
+//time button
+sortBtntime.addEventListener("click", () => {
+    toggleTime()
+    animeList = sortState.time===2 ? [...animesascending].sort((a, b) => b.released.localeCompare(a.released)) : [...animesascending].sort((a, b) => a.released.localeCompare(b.released))
+    togglebtn()
+    renderAnimeGrid()
 });
