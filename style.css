@@ -63,6 +63,18 @@ button:hover {
     transform: translateY(-1px);
 }
 
+#selected-themes {
+    margin-top: 10px;
+}
+
+.theme-tag {
+    display: inline-block;
+    margin: 4px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
 footer {
     text-align: center;
     margin-top: 180px;
@@ -93,6 +105,7 @@ footer {
 .anime-card:hover {
     transform: scale(1.1);
 }
+
 .anime-card img {
     width: 220px;
     height: 330px;

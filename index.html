@@ -7,33 +7,42 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Foldit:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
     </head>
+
     <body>
         <div class="background-lines"></div>
 
         <div class="page-container">
+
             <header>
                 <h1>My Anime Page</h1>
                 <p>
-                    All the animes I've watched so far...
+                    Animes I've watched so far...
                 </p>
                         <div class="controls">
                             <button id="sort-btn-alpha">▼ A to Z</button>
                             <button id="sort-btn-time">Released</button>
+                            <select id="theme-select">
+                                <option value="">Anime Theme</option>
+                                <option value="cb">Conflict & Battle</option>
+                                <option value="ga">Growth & Adventure</option>
+                                <option value="lp">Love & Peace</option>
+                                <option value="mp">Mind & Psychology</option>
+                            </select>
                         </div>
+                        <div id="selected-themes"></div>
+                <p id="anime-count"></p>
             </header>
 
             <main>
                 <section class="anime-grid" id="anime-grid">
-
                 </section>
             </main>
 
             <footer>
-                <p id="anime-count"></p>
                 <p>Made by Championz • 2026</p>
             </footer>
+            
         </div>
 
     <script src="script.js"></script>
