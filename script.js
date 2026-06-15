@@ -107,6 +107,8 @@ const animeall = [
     { name: "Trapezium", image: "images/trapezium.jpg", released: "2024-05", theme:[lp] },
     { name: "The Tunnel to Summer, the Exit of Goodbye", image: "images/the-tunnel-to-summer.jpg", released: "2022-09", theme:[lp] },
 
+    { name: "Violet Evergarden", image: "images/violet-evergarden.jpg", released: "2018-01", theme:[lp,cb] },
+    
     { name: "Weathering with You", image: "images/weathering-with-you.png", released: "2019-07", theme:[lp] },
     { name: "Wind Breaker", image: "images/wind-breaker.jpg", released: "2024-04", theme:[cb] },
     { name: "Wistoria: Wand and Sword", image: "images/wistoria.jpg", released: "2024-07", theme:[cb,ga] },
