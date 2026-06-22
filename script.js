@@ -467,6 +467,12 @@ const animeall = [
     theme: [ga, cb],
   },
   {
+    name: "Summer Ghost",
+    image: "images/summer-ghost.jpg",
+    released: "2021-01",
+    theme: [mp, lp],
+  },
+  {
     name: "The Summer Hikaru Died",
     image: "images/the-summer-hikaru-died.jpg",
     released: "2025-07",
