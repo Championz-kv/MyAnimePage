@@ -707,7 +707,7 @@ function renderAnimeGrid() {
       `Showing all ${animeList.length} anime.`
   } else {
     document.getElementById("anime-count").textContent =
-      `Showing ${animeList.length} anime.`
+      `Showing selected ${animeList.length} anime.`
   }
 }
 
