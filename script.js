@@ -135,7 +135,7 @@ function togglebtn() {
 //a to z button
 sortBtnalpha.addEventListener("click", () => {
   toggleAlpha()
-  animeList = sortState.alpha === 1 ? animefiltered : animefiltered.toReversed()
+  sortAnime()
   togglebtn()
   renderAnimeGrid()
 })
@@ -143,10 +143,7 @@ sortBtnalpha.addEventListener("click", () => {
 //time button
 sortBtntime.addEventListener("click", () => {
   toggleTime()
-  animeList =
-    sortState.time === 2
-      ? [...animefiltered].sort((a, b) => b.released.localeCompare(a.released))
-      : [...animefiltered].sort((a, b) => a.released.localeCompare(b.released))
+  sortAnime()
   togglebtn()
   renderAnimeGrid()
 })
@@ -185,7 +182,30 @@ function filter() {
       anime.name.toLowerCase().includes(searchText)
     )
   }
-  animeList = [...animefiltered]
+}
+
+function sortAnime() {
+
+  if (sortState.alpha !== SORT.OFF) {
+
+    animeList =
+      sortState.alpha === SORT.ASC
+        ? [...animefiltered]
+        : [...animefiltered].toReversed()
+  }
+
+  else if (sortState.time !== SORT.OFF) {
+    
+    animeList =
+      sortState.time === SORT.ASC
+        ? [...animefiltered].sort((a, b) =>
+            a.released.localeCompare(b.released)
+          )
+        : [...animefiltered].sort((a, b) =>
+            b.released.localeCompare(a.released)
+          )
+  }
+
 }
 
 const themeSelect = document.getElementById("theme-select")
@@ -204,6 +224,7 @@ themeSelect.addEventListener("change", () => {
   }
   updateThemeTags()
   filter()
+  sortAnime()
   renderAnimeGrid()
   themeSelect.value = ""
 })
@@ -213,8 +234,7 @@ searchBox.addEventListener("keydown", event => {
     if (event.key !== "Enter") return
     searchText = searchBox.value.trim().toLowerCase()
 
-    applyFilters()
-    applySorting()
+    filter()
+    sortAnime()
     renderAnimeGrid()
-
 })
