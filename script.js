@@ -195,7 +195,7 @@ function sortAnime() {
   }
 
   else if (sortState.time !== SORT.OFF) {
-    
+
     animeList =
       sortState.time === SORT.ASC
         ? [...animefiltered].sort((a, b) =>
@@ -230,8 +230,7 @@ themeSelect.addEventListener("change", () => {
 })
 
 const searchBox = document.getElementById("search-box")
-searchBox.addEventListener("keydown", event => {
-    if (event.key !== "Enter") return
+searchBox.addEventListener("input", () => {
     searchText = searchBox.value.trim().toLowerCase()
 
     filter()
