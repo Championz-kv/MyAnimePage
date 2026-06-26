@@ -1,4 +1,5 @@
 // setting anime list to display
+let searchText = ""
 let selectedThemes = new Set()
 const SORT = { OFF: 0, ASC: 1, DESC: 2 }
 let sortState = { alpha: SORT.ASC, time: SORT.OFF }
@@ -168,17 +169,23 @@ function updateThemeTags() {
     container.appendChild(tag)
   })
 }
+
 function filter() {
   if (selectedThemes.size === 0) {
     animefiltered = [...animeall]
-    animeList = [...animefiltered]
-    return
-  } else {
-    animefiltered = animeall.filter((anime) =>
-      anime.theme.some((theme) => selectedThemes.has(theme)),
-    )
-    animeList = [...animefiltered]
   }
+  else {
+    animefiltered = animeall.filter(anime =>
+      anime.theme.some(theme => selectedThemes.has(theme))
+    )
+  }
+
+  if (searchText !== "") {
+    animefiltered = animefiltered.filter(anime =>
+      anime.name.toLowerCase().includes(searchText)
+    )
+  }
+  animeList = [...animefiltered]
 }
 
 const themeSelect = document.getElementById("theme-select")
@@ -199,4 +206,15 @@ themeSelect.addEventListener("change", () => {
   filter()
   renderAnimeGrid()
   themeSelect.value = ""
+})
+
+const searchBox = document.getElementById("search-box")
+searchBox.addEventListener("keydown", event => {
+    if (event.key !== "Enter") return
+    searchText = searchBox.value.trim().toLowerCase()
+
+    applyFilters()
+    applySorting()
+    renderAnimeGrid()
+
 })
