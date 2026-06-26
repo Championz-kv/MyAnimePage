@@ -1,152 +1,168 @@
 body {
-    background: black;
-    color: white;
-    font-family: "Poppins", sans-serif;
+  background: black;
+  color: white;
+  font-family: "Poppins", sans-serif;
 }
 
 .page-container {
-    width: fit-content;
-    min-width: 98%;
-    margin: 0 auto;
+  width: fit-content;
+  min-width: 98%;
+  margin: 0 auto;
 }
 
 @keyframes drift {
-    from {
-        transform:
-            translate(0, 0)
-            rotate(-45deg);
-    }
-    to {
-        transform:
-            translate(
-                var(--travel),
-                calc(var(--travel) * -1)
-            )
-            rotate(-45deg);
-    }
+  from {
+    transform: translate(0, 0) rotate(-45deg);
+  }
+  to {
+    transform: translate(var(--travel), calc(var(--travel) * -1)) rotate(-45deg);
+  }
 }
 
 .bg-line {
-    position: absolute;
-    height: 4px;
+  position: absolute;
+  height: 4px;
 
-    background:
-        linear-gradient(
-            to right,
-            transparent,
-            var(--line-color),
-            transparent
-        );
+  background: linear-gradient(to right, transparent, var(--line-color), transparent);
 
-    transform: rotate(-45deg);
-    animation: drift linear infinite;
+  transform: rotate(-45deg);
+  animation: drift linear infinite;
 }
 .background-lines {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
 }
 
 header {
-    text-align: center;
-    margin-bottom: 50px;
+  text-align: center;
+  margin-bottom: 50px;
 }
 header h1 {
-    font-weight: 700;
-    letter-spacing: 2px;
-    font-family: "Foldit", sans-serif;
-    font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-family: "Foldit", sans-serif;
+  font-size: 5rem;
 }
 
 #selected-themes {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .controls {
-    display: inline-flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-    padding: 8px 18px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.04);
+  display: inline-flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
 }
 
-.controls button, .controls select {
-    background: rgba(255,255,255,0.08);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 12px;
-    padding: 10px 18px;
-    box-shadow: 0 0 8px rgba(255,255,255,0.08);
+.controls button,
+.controls select {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 10px 18px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.08);
 
-    font-family: "Poppins", sans-serif;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .controls select option {
-    background: #111;
-    color: white;
+  background: #111;
+  color: white;
 }
 
-.controls button:hover, .controls select:hover {
-    background: rgba(255,255,255,0.15);
+.controls button:hover,
+.controls select:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+#search-box {
+  width: 220px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+#search-box::placeholder {
+    color: rgba(255,255,255,0.45);
+}
+#search-box:hover {
+    background: rgba(255,255,255,0.12);
     transform: translateY(-2px);
+}
+#search-box:focus {
+    border-color: #7ad7ff;
+    box-shadow:
+        0 0 12px rgba(122,215,255,0.35);
+    background: rgba(255,255,255,0.10);
 }
 
 .theme-tag {
-    display: inline-block;
-    margin: 4px;
-    padding: 5px 12px;
-    border-radius: 999px;
-    font-size: 0.9rem;
-    font-weight: 600;
+  display: inline-block;
+  margin: 4px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 footer {
-    text-align: center;
-    margin-top: 180px;
+  text-align: center;
+  margin-top: 180px;
 }
 
 .anime-grid {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
 
 .column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
 }
 
 .offset {
-    transform: translateY(150px);
+  transform: translateY(150px);
 }
 
 .anime-card {
-    transition: transform 0.25s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  transition: transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .anime-card:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .anime-card img {
-    width: 220px;
-    height: 330px;
-    object-fit: cover;
+  width: 220px;
+  height: 330px;
+  object-fit: cover;
 }
 .anime-card p {
-    width: 220px;
-    height: 60px;
-    text-align: center;
-    font-family: "Chewy", cursive;
-    letter-spacing: 1px;
+  width: 220px;
+  height: 60px;
+  text-align: center;
+  font-family: "Chewy", cursive;
+  letter-spacing: 1px;
 }
