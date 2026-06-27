@@ -16,7 +16,7 @@ const animewatching = [
     name: "That Time I Got Reincarnated as a Slime",
     image: "images/tensura.jpg",
     season: "Season 4",
-    status: "Airing",
+    status: "Airing (Fridays)",
     onEps: 11,
     totalEps: 60,
   },
@@ -24,24 +24,120 @@ const animewatching = [
     name: "Liar Game",
     image: "images/liar-game.png",
     season: "",
-    status: "Airing",
+    status: "Airing (Mondays)",
     onEps: 12,
     totalEps: 24,
   },
+  {
+    name: "Violet Evergarden",
+    image: "images/violet-evergarden.jpg",
+    season: "",
+    status: "Completed",
+    onEps: 5,
+    totalEps: 13,
+  },
+  {
+    name: "Marriagetoxin",
+    image: "images/marriagetoxin.jpg",
+    season: "",
+    status: "Airing (Tuesdays)",
+    onEps: 12,
+    totalEps: 13,
+  }
 ]
 
 const animeplan = [
   {
+    name: "Rich Girl Caretaker",
+    image: "images/rich-girl-caretaker.png",
+    status: "Upcoming",
+    info: "Airing July 4"
+  },
+  {
     name: "Smoking Behind the Supermarket with You",
-    image: "images/smoking-behind-the-supermarket.jpg",
-    info: "Will AIR from July 9"
+    image: "images/smoking-behind-the-supermarket-with-you.png",
+    status: "Upcoming",
+    info: "Airing July 9"
+  },
+  {
+    name: "Who Ever Steals This Book",
+    image: "images/whoever-steals-this-book.jpg",
+    status: "Upcoming",
+    info: "Airing 2026"
+  },
+  {
+    name: "Gachiakuta",
+    image: "images/gachiakuta.jpg",
+    status: "New Season Upcoming",
+    info: "Yet to Start"
+  },
+  {
+    name: "The Future Diary",
+    image: "images/the-future-diary.png",
+    status: "Completed",
+    info: "Yet to Start"
   },
   {
     name: "Lycoris Recoil",
-    image: "images/lycoris-recoil.png",
-    info: "Completed"
+    image: "images/lycoris-recoil.jpg",
+    status: "Completed",
+    info: "Yet to Start"
   },
-]
+  {
+    name: "Makeine: Too Many Losing Heroines!",
+    image: "images/makeine.jpg",
+    status: "Completed",
+    info: "Yet to Start"
+  },
+  {
+    name: "Daemons of the Shadow Realm",
+    image: "images/daemons-of-the-shadow-realm.jpg",
+    status: "Airing",
+    info: "Yet to Start"
+  },
+  {
+    name: "Re:ZERO",
+    image: "images/rezero.jpg",
+    status: "New Season Upcoming",
+    info: "Yet to Start"
+  },
+  {
+    name: "Neon Genesis Evangelion",
+    image: "images/evangelion.jpg",
+    status: "Completed",
+    info: "Yet to Start"
+  },
+  {
+    name: "Blue Box",
+    image: "images/blue-box.jpg",
+    status: "New Season Upcoming",
+    info: "To continue, October 4"
+  },
+  {
+    name: "The Detective Is Already Dead",
+    image: "images/the-detective-is-already-dead.jpg",
+    status: "New Season Upcoming",
+    info: "To continue, October"
+  },
+  {
+    name: "The Apothecary Diaries",
+    image: "images/the-apothecary-diaries.jpg",
+    status: "New Season Upcoming",
+    info: "To continue, October"
+  },
+  {
+    name: "Grand Blue Dreaming",
+    image: "images/grand-blue-dreaming.png",
+    status: "New Season Upcoming",
+    info: "To continue season2, July"
+  },
+  {
+    name: "You and I Are Polar Opposites",
+    image: "images/you-and-i-are-polar-opposites.jpg",
+    status: "New Season Upcoming",
+    info: "To continue, July 5"
+  }
+];
 
 const animeall = [
   {

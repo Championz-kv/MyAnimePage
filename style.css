@@ -90,8 +90,29 @@ header h1 {
 .mode-controls {
     display: flex;
     justify-content: center;
-    gap: 14px;
-    margin-bottom: 16px;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+.mode-controls button {
+    min-width: 270px;
+    padding: 12px 18px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition:
+        background .25s,
+        transform .25s,
+        box-shadow .25s;
+}
+.mode-controls button:hover {
+    background: rgba(255,255,255,.12);
+    transform: translateY(-2px);
+    box-shadow: 0 0 14px rgba(255,255,255,.15);
 }
 
 #search-box {
@@ -184,4 +205,15 @@ footer {
 .anime-card.watching p, .anime-card.plan p {
     font-size: 0.95rem;
     line-height: 1.35;
+}
+
+/*text colours*/
+.year, .season {
+    color: #d7bfff;
+}
+.status {
+    color: #9fe8ff;
+}
+.episodes, .info {
+    color: #8fffd2;
 }

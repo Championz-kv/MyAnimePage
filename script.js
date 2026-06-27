@@ -29,31 +29,39 @@ const grid = document.getElementById("anime-grid")
 function getCardText(anime) {
 
   if (currentMode === MODE.WATCHED) {
-    return `
-      <img src="${anime.image}">
-      <p>${anime.name} (${anime.released.slice(0,4)})</p>
-    `
+  return `
+    <img src="${anime.image}">
+    <p>
+      ${anime.name}
+      <span class="year">(${anime.released.slice(0, 4)})</span>
+    </p>
+  `
   }
 
   if (currentMode === MODE.WATCHING) {
-    return `
-      <img src="${anime.image}">
-      <p>
-        ${anime.name}${anime.season ? ` (${anime.season})` : ""}<br>
-        ${anime.status}<br>
-        ${anime.onEps} / ${anime.totalEps} Episodes
-      </p>
-    `
+  return `
+    <img src="${anime.image}">
+    <p>
+      ${anime.name}
+      ${anime.season ? `<span class="season">(${anime.season})</span>` : ""}
+      <br>
+      <span class="status">Status : ${anime.status}</span>
+      <br>
+      <span class="episodes"><strong>${anime.onEps} / ${anime.totalEps}</strong> Episodes</span>
+    </p>
+  `
   }
 
   return `
     <img src="${anime.image}">
     <p>
-      ${anime.name}${anime.season ? `<br>${anime.season}` : ""}<br>
-      ${anime.info}
+      ${anime.name}
+      <br>
+      <span class="status">Status : ${anime.status}</span>
+      ${anime.info ? `<br><span class="info">${anime.info}</span>` : ""}
     </p>
   `
-}
+  }
 
 function renderAnimeGrid() {
   grid.innerHTML = ""
@@ -193,18 +201,21 @@ function updateModeUI() {
     watchedBtn.style.display = "none"
     mainControls.style.display = "inline-flex"
     selectedThemesBox.style.display = "block"
+    headerText.textContent = "Animes I've watched so far..."
   }
 
   else if (currentMode === MODE.WATCHING) {
     watchingBtn.style.display = "none"
     mainControls.style.display = "none"
     selectedThemesBox.style.display = "none"
+    headerText.textContent = "Animes I'm currently watching..."
   }
 
   else {
     planBtn.style.display = "none"
     mainControls.style.display = "none"
     selectedThemesBox.style.display = "none"
+    headerText.textContent = "Animes I plan to watch..."
   }
 }
 
