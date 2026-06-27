@@ -87,6 +87,13 @@ header h1 {
   transform: translateY(-2px);
 }
 
+.mode-controls {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
 #search-box {
   width: 220px;
   padding: 10px 16px;
@@ -161,8 +168,20 @@ footer {
 }
 .anime-card p {
   width: 220px;
-  height: 60px;
   text-align: center;
   font-family: "Chewy", cursive;
   letter-spacing: 1px;
+}
+.anime-card.watched p {
+    height: 60px;
+}
+.anime-card.watching p {
+    height: 95px;
+}
+.anime-card.plan p {
+    height: 80px;
+}
+.anime-card.watching p, .anime-card.plan p {
+    font-size: 0.95rem;
+    line-height: 1.35;
 }

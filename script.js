@@ -1,3 +1,10 @@
+const MODE = {
+    WATCHED: "watched",
+    WATCHING: "watching",
+    PLAN: "plan"
+}
+let currentMode = MODE.WATCHED
+
 // setting anime list to display
 let searchText = ""
 let selectedThemes = new Set()
@@ -18,6 +25,36 @@ let animeList = [...animefiltered]
 
 const numberOfColumns = 5
 const grid = document.getElementById("anime-grid")
+
+function getCardText(anime) {
+
+  if (currentMode === MODE.WATCHED) {
+    return `
+      <img src="${anime.image}">
+      <p>${anime.name} (${anime.released.slice(0,4)})</p>
+    `
+  }
+
+  if (currentMode === MODE.WATCHING) {
+    return `
+      <img src="${anime.image}">
+      <p>
+        ${anime.name}${anime.season ? ` (${anime.season})` : ""}<br>
+        ${anime.status}<br>
+        ${anime.onEps} / ${anime.totalEps} Episodes
+      </p>
+    `
+  }
+
+  return `
+    <img src="${anime.image}">
+    <p>
+      ${anime.name}${anime.season ? `<br>${anime.season}` : ""}<br>
+      ${anime.info}
+    </p>
+  `
+}
+
 function renderAnimeGrid() {
   grid.innerHTML = ""
   // create columns
@@ -33,26 +70,34 @@ function renderAnimeGrid() {
     columns.push(column)
   }
 
-  const completeRows = Math.floor(animeList.length / numberOfColumns)
+  let displayList
+  if (currentMode === MODE.WATCHED)
+    displayList = animeList
+
+  else if (currentMode === MODE.WATCHING)
+    displayList = animewatching
+
+  else
+    displayList = animeplan
+
+  const completeRows = Math.floor(displayList.length / numberOfColumns)
   const normalCount = completeRows * numberOfColumns
 
   // Fill all complete rows
   for (let index = 0; index < normalCount; index++) {
-    const anime = animeList[index]
+    const anime = displayList[index]
     const card = document.createElement("div")
     card.classList.add("anime-card")
+    card.classList.add(currentMode)
 
-    card.innerHTML = `
-            <img src="${anime.image}">
-            <p>${anime.name} (${anime.released.slice(0, 4)})</p>
-        `
+    card.innerHTML = getCardText(anime)
 
     const columnIndex = index % numberOfColumns
     columns[columnIndex].appendChild(card)
   }
 
   // Create last incomplete row
-  const remaining = animeList.length - normalCount
+  const remaining = displayList.length - normalCount
 
   const lastRowPositions = {
     1: [2],
@@ -65,14 +110,12 @@ function renderAnimeGrid() {
     const positions = lastRowPositions[remaining]
 
     for (let i = 0; i < remaining; i++) {
-      const anime = animeList[normalCount + i]
+      const anime = displayList[normalCount + i]
       const card = document.createElement("div")
       card.classList.add("anime-card")
+      card.classList.add(currentMode)
 
-      card.innerHTML = `
-                <img src="${anime.image}">
-                <p>${anime.name} (${anime.released.slice(0, 4)})</p>
-            `
+      card.innerHTML = getCardText(anime)
 
       columns[positions[i]].appendChild(card)
     }
@@ -80,10 +123,10 @@ function renderAnimeGrid() {
 
   if (selectedThemes.size === 0) {
     document.getElementById("anime-count").textContent =
-      `Showing all ${animeList.length} anime.`
+      `Showing all ${displayList.length} anime.`
   } else {
     document.getElementById("anime-count").textContent =
-      `Showing selected ${animeList.length} anime.`
+      `Showing selected ${displayList.length} anime.`
   }
 }
 
@@ -113,6 +156,58 @@ for (let i = 0; i < 30; i++) {
 }
 
 //buttons
+const headerText = document.getElementById("header-text")
+
+const mainControls = document.getElementById("main-controls")
+
+const watchedBtn = document.getElementById("mode-watched-btn")
+watchedBtn.style.display = "none"
+const watchingBtn = document.getElementById("mode-watching-btn")
+const planBtn = document.getElementById("mode-plan-btn")
+
+watchedBtn.addEventListener("click", () => {
+  currentMode = MODE.WATCHED
+  updateModeUI()
+  renderAnimeGrid()
+})
+
+watchingBtn.addEventListener("click", () => {
+  currentMode = MODE.WATCHING
+  updateModeUI()
+  renderAnimeGrid()
+})
+
+planBtn.addEventListener("click", () => {
+  currentMode = MODE.PLAN
+  updateModeUI()
+  renderAnimeGrid()
+})
+
+function updateModeUI() {
+  const selectedThemesBox = document.getElementById("selected-themes")
+  watchedBtn.style.display = "inline-block"
+  watchingBtn.style.display = "inline-block"
+  planBtn.style.display = "inline-block"
+
+  if (currentMode === MODE.WATCHED) {
+    watchedBtn.style.display = "none"
+    mainControls.style.display = "inline-flex"
+    selectedThemesBox.style.display = "block"
+  }
+
+  else if (currentMode === MODE.WATCHING) {
+    watchingBtn.style.display = "none"
+    mainControls.style.display = "none"
+    selectedThemesBox.style.display = "none"
+  }
+
+  else {
+    planBtn.style.display = "none"
+    mainControls.style.display = "none"
+    selectedThemesBox.style.display = "none"
+  }
+}
+
 const sortBtnalpha = document.getElementById("sort-btn-alpha")
 const sortBtntime = document.getElementById("sort-btn-time")
 function togglebtn() {

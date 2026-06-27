@@ -18,10 +18,26 @@
 
             <header>
                 <h1>My Anime Page</h1>
-                <p>
+                <p id="header-text">
                     Animes I've watched so far...
                 </p>
-                        <div class="controls">
+
+                        <div class="mode-controls">
+                            
+                            <button id="mode-watched-btn">
+                                Check out watched animes
+                            </button>
+                            <button id="mode-watching-btn">
+                                Check out currently watching animes
+                            </button>
+                            <button id="mode-plan-btn">
+                                Check out "to watch" anime plans
+                            </button>
+
+                        </div>
+
+                        <div class="controls" id="main-controls">
+
                             <button id="sort-btn-alpha">▼ A to Z</button>
                             <button id="sort-btn-time">Released</button>
                             <select id="theme-select">
@@ -32,6 +48,7 @@
                                 <option value="mp">Mind & Psychology</option>
                             </select>
                             <input id="search-box" type="text" placeholder="Search anime 🔍">
+
                         </div>
                         <div id="selected-themes"></div>
                 <p id="anime-count"></p>

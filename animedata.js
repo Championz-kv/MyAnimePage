@@ -11,6 +11,38 @@ const themeNames = {
   cb: "Conflict & Battle",
 }
 
+const animewatching = [
+  {
+    name: "That Time I Got Reincarnated as a Slime",
+    image: "images/tensura.jpg",
+    season: "Season 4",
+    status: "Airing",
+    onEps: 11,
+    totalEps: 60,
+  },
+  {
+    name: "Liar Game",
+    image: "images/liar-game.png",
+    season: "",
+    status: "Airing",
+    onEps: 12,
+    totalEps: 24,
+  },
+]
+
+const animeplan = [
+  {
+    name: "Smoking Behind the Supermarket with You",
+    image: "images/smoking-behind-the-supermarket.jpg",
+    info: "Will AIR from July 9"
+  },
+  {
+    name: "Lycoris Recoil",
+    image: "images/lycoris-recoil.png",
+    info: "Completed"
+  },
+]
+
 const animeall = [
   {
     name: "365 Days to the Wedding",
@@ -18,8 +50,12 @@ const animeall = [
     released: "2024-10",
     theme: [lp],
   },
-  { name: "86", image: "images/86.jpg", released: "2021-04", theme: [cb, mp] },
-
+  {
+    name: "86",
+    image: "images/86.jpg",
+    released: "2021-04",
+    theme: [cb, mp],
+  },
   {
     name: "Agents of the Four Seasons: Dance of Spring",
     image: "images/agents-of-the-four-seasons.jpg",
