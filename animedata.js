@@ -33,16 +33,16 @@ const animewatching = [
     image: "images/violet-evergarden.jpg",
     season: "",
     status: "Completed",
-    onEps: 5,
+    onEps: 7,
     totalEps: 13,
   },
   {
-    name: "Marriagetoxin",
-    image: "images/marriagetoxin.jpg",
-    season: "",
-    status: "Airing (Tuesdays)",
-    onEps: 12,
-    totalEps: 13,
+    name: "Hana Kimi",
+    image: "images/hana-kimi.jpg",
+    season: "Season 2",
+    status: "Airing (Wednesdays)",
+    onEps: 0,
+    totalEps: 12,
   }
 ]
 
@@ -128,13 +128,13 @@ const animeplan = [
   {
     name: "Grand Blue Dreaming",
     image: "images/grand-blue-dreaming.png",
-    status: "New Season Upcoming",
-    info: "To continue season2, July"
+    status: "Season 2 upcoming",
+    info: "To continue, July 6"
   },
   {
     name: "You and I Are Polar Opposites",
     image: "images/you-and-i-are-polar-opposites.jpg",
-    status: "New Season Upcoming",
+    status: "Season 2 Upcoming",
     info: "To continue, July 5"
   }
 ];
