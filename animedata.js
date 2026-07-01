@@ -17,7 +17,7 @@ const animewatching = [
     image: "images/tensura.jpg",
     season: "Season 4",
     status: "Airing (Fridays)",
-    onEps: 11,
+    onEps: 12,
     totalEps: 60,
   },
   {
@@ -29,30 +29,40 @@ const animewatching = [
     totalEps: 24,
   },
   {
-    name: "Violet Evergarden",
-    image: "images/violet-evergarden.jpg",
-    season: "",
-    status: "Completed",
-    onEps: 7,
-    totalEps: 13,
-  },
-  {
     name: "Hana Kimi",
     image: "images/hana-kimi.jpg",
     season: "Season 2",
     status: "Airing (Wednesdays)",
     onEps: 0,
     totalEps: 12,
-  }
-]
-
-const animeplan = [
+  },
   {
     name: "Rich Girl Caretaker",
     image: "images/rich-girl-caretaker.png",
-    status: "Upcoming",
-    info: "Airing July 4"
+    season: "",
+    status: "Airing (Saturdays)",
+    onEps: 0,
+    totalEps: 12,
   },
+  {
+    name: "Grand Blue Dreaming",
+    image: "images/grand-blue-dreaming.png",
+    season: "Season 2",
+    status: "Completed (Season 3 Upcoming)",
+    onEps: 0,
+    totalEps: 12,
+  },
+  {
+    name: "You and I Are Polar Opposites",
+    image: "images/you-and-i-are-polar-opposites.jpg",
+    season: "Season 2 (final)",
+    status: "Airing (Sundays)",
+    onEps: 0,
+    totalEps: 12,
+  },
+]
+
+const animeplan = [
   {
     name: "Smoking Behind the Supermarket with You",
     image: "images/smoking-behind-the-supermarket-with-you.png",
@@ -125,18 +135,6 @@ const animeplan = [
     status: "New Season Upcoming",
     info: "To continue, October"
   },
-  {
-    name: "Grand Blue Dreaming",
-    image: "images/grand-blue-dreaming.png",
-    status: "Season 2 upcoming",
-    info: "To continue, July 6"
-  },
-  {
-    name: "You and I Are Polar Opposites",
-    image: "images/you-and-i-are-polar-opposites.jpg",
-    status: "Season 2 Upcoming",
-    info: "To continue, July 5"
-  }
 ];
 
 const animeall = [
