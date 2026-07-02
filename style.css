@@ -207,6 +207,16 @@ footer {
     line-height: 1.35;
 }
 
+.footer-link {
+  color: #00d4ff;
+  text-decoration: none;
+  transition: text-shadow 0.2s, opacity 0.2s;
+}
+.footer-link:hover {
+  text-shadow: #00d4ff66;
+  opacity: 0.85;
+}
+
 /*text colours*/
 .year, .season {
     color: #d7bfff;
