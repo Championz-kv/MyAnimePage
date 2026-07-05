@@ -17,7 +17,7 @@ const animewatching = [
     image: "images/tensura.jpg",
     season: "Season 4",
     status: "Airing (Fridays)",
-    onEps: 12,
+    onEps: 13,
     totalEps: 60,
   },
   {
@@ -33,7 +33,7 @@ const animewatching = [
     image: "images/hana-kimi.jpg",
     season: "Season 2",
     status: "Airing (Wednesdays)",
-    onEps: 0,
+    onEps: 2,
     totalEps: 12,
   },
   {
@@ -41,14 +41,14 @@ const animewatching = [
     image: "images/rich-girl-caretaker.png",
     season: "",
     status: "Airing (Saturdays)",
-    onEps: 0,
+    onEps: 1,
     totalEps: 12,
   },
   {
     name: "Grand Blue Dreaming",
     image: "images/grand-blue-dreaming.png",
     season: "Season 2",
-    status: "Completed (Season 3 Upcoming)",
+    status: "Completed (Season 3 Airing)",
     onEps: 0,
     totalEps: 12,
   },
@@ -57,7 +57,7 @@ const animewatching = [
     image: "images/you-and-i-are-polar-opposites.jpg",
     season: "Season 2 (final)",
     status: "Airing (Sundays)",
-    onEps: 0,
+    onEps: 1,
     totalEps: 12,
   },
 ]
@@ -551,6 +551,12 @@ const animeall = [
     theme: [lp],
   },
   {
+    name: "Rich Girl Caretaker",
+    image: "images/rich-girl-caretaker.png",
+    released: "2026-07",
+    theme: [lp],
+  },
+  {
     name: "Ron Kamonohashi's Forbidden Deductions",
     image: "images/ron-kamonohashi.jpg",
     released: "2023-10",
@@ -695,7 +701,7 @@ const animeall = [
     name: "Violet Evergarden",
     image: "images/violet-evergarden.jpg",
     released: "2018-01",
-    theme: [lp, cb],
+    theme: [lp, mp],
   },
 
   {
