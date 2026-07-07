@@ -25,7 +25,7 @@ const animewatching = [
     image: "images/liar-game.png",
     season: "",
     status: "Airing (Mondays)",
-    onEps: 12,
+    onEps: 13,
     totalEps: 24,
   },
   {
@@ -49,7 +49,7 @@ const animewatching = [
     image: "images/grand-blue-dreaming.png",
     season: "Season 2",
     status: "Completed (Season 3 Airing)",
-    onEps: 0,
+    onEps: 4,
     totalEps: 12,
   },
   {
@@ -74,6 +74,12 @@ const animeplan = [
     image: "images/whoever-steals-this-book.jpg",
     status: "Upcoming",
     info: "Airing 2026"
+  },
+  {
+    name: "The Ramparts of Ice",
+    image: "images/the-ramparts-of-ice.jpg",
+    status: "New Season Upcoming",
+    info: "Yet to Start"
   },
   {
     name: "Gachiakuta",
