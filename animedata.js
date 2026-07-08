@@ -47,9 +47,9 @@ const animewatching = [
   {
     name: "Grand Blue Dreaming",
     image: "images/grand-blue-dreaming.png",
-    season: "Season 2",
-    status: "Completed (Season 3 Airing)",
-    onEps: 4,
+    season: "Season 3",
+    status: "Airing (Mondays)",
+    onEps: 1,
     totalEps: 12,
   },
   {
