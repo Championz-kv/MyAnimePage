@@ -33,7 +33,7 @@ const animewatching = [
     image: "images/hana-kimi.jpg",
     season: "Season 2",
     status: "Airing (Wednesdays)",
-    onEps: 2,
+    onEps: 3,
     totalEps: 12,
   },
   {
@@ -60,15 +60,17 @@ const animewatching = [
     onEps: 1,
     totalEps: 12,
   },
-]
-
-const animeplan = [
   {
     name: "Smoking Behind the Supermarket with You",
     image: "images/smoking-behind-the-supermarket-with-you.png",
-    status: "Upcoming",
-    info: "Airing July 9"
+    season: "",
+    status: "Airing (Thursdays)",
+    onEps: 1,
+    totalEps: 12,
   },
+]
+
+const animeplan = [
   {
     name: "Who Ever Steals This Book",
     image: "images/whoever-steals-this-book.jpg",
@@ -122,6 +124,12 @@ const animeplan = [
     image: "images/evangelion.jpg",
     status: "Completed",
     info: "Yet to Start"
+  },
+  {
+    name: "Mushoku Tensei: Jobless Reincarnation",
+    image: "images/mushoku-tensei.jpg",
+    status: "Upcoming",
+    info: "Airing July 9"
   },
   {
     name: "Blue Box",
@@ -598,6 +606,12 @@ const animeall = [
     image: "images/the-shiunji-family-children.jpg",
     released: "2025-04",
     theme: [lp],
+  },
+  {
+    name: "Smoking Behind the Supermarket with You",
+    image: "images/smoking-behind-the-supermarket-with-you.png",
+    released: "2026-06",
+    theme: [lp]
   },
   {
     name: "Solo Leveling",
