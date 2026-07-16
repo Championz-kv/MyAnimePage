@@ -1,3 +1,4 @@
+// mode on website
 const MODE = {
     WATCHED: "watched",
     WATCHING: "watching",
@@ -5,27 +6,13 @@ const MODE = {
 }
 let currentMode = MODE.WATCHED
 
-// setting anime list to display
+// filter and sort options 
 let searchText = ""
 let selectedThemes = new Set()
 const SORT = { OFF: 0, ASC: 1, DESC: 2 }
 let sortState = { alpha: SORT.ASC, time: SORT.OFF }
 
-function toggleAlpha() {
-  sortState.alpha = sortState.alpha === SORT.ASC ? SORT.DESC : SORT.ASC
-  sortState.time = SORT.OFF
-}
-function toggleTime() {
-  sortState.time = sortState.time === SORT.DESC ? SORT.ASC : SORT.DESC
-  sortState.alpha = SORT.OFF
-}
-
-let animefiltered = [...animeall]
-let animeList = [...animefiltered]
-
-const numberOfColumns = 5
-const grid = document.getElementById("anime-grid")
-
+// card setups
 function getCardText(anime) {
 
   if (currentMode === MODE.WATCHED) {
@@ -62,6 +49,13 @@ function getCardText(anime) {
     </p>
   `
   }
+
+// render grid
+let animefiltered = [...animeall]
+let animeList = [...animefiltered]
+
+const numberOfColumns = 5
+const grid = document.getElementById("anime-grid")
 
 function renderAnimeGrid() {
   grid.innerHTML = ""
@@ -137,9 +131,8 @@ function renderAnimeGrid() {
       `Showing selected ${displayList.length} anime.`
   }
 }
-
-// create the grid and display anime
 renderAnimeGrid()
+
 // background lines
 const colors = [
   "rgba(120, 180, 255, 0.20)",
@@ -147,7 +140,6 @@ const colors = [
   "rgba(255, 235, 120, 0.20)",
   "rgba(255, 150, 150, 0.20)",
 ]
-
 for (let i = 0; i < 30; i++) {
   const line = document.createElement("div")
   line.classList.add("bg-line")
@@ -219,6 +211,16 @@ function updateModeUI() {
   }
 }
 
+// sorting buttons
+function toggleAlpha() {
+  sortState.alpha = sortState.alpha === SORT.ASC ? SORT.DESC : SORT.ASC
+  sortState.time = SORT.OFF
+}
+function toggleTime() {
+  sortState.time = sortState.time === SORT.DESC ? SORT.ASC : SORT.DESC
+  sortState.alpha = SORT.OFF
+}
+
 const sortBtnalpha = document.getElementById("sort-btn-alpha")
 const sortBtntime = document.getElementById("sort-btn-time")
 function togglebtn() {
@@ -238,7 +240,6 @@ function togglebtn() {
   }
 }
 
-//a to z button
 sortBtnalpha.addEventListener("click", () => {
   toggleAlpha()
   sortAnime()
@@ -246,7 +247,6 @@ sortBtnalpha.addEventListener("click", () => {
   renderAnimeGrid()
 })
 
-//time button
 sortBtntime.addEventListener("click", () => {
   toggleTime()
   sortAnime()
@@ -254,6 +254,7 @@ sortBtntime.addEventListener("click", () => {
   renderAnimeGrid()
 })
 
+// theme filter
 function updateThemeTags() {
   const container = document.getElementById("selected-themes")
   container.innerHTML = ""
@@ -273,6 +274,7 @@ function updateThemeTags() {
   })
 }
 
+// sort and filters
 function filter() {
   if (selectedThemes.size === 0) {
     animefiltered = [...animeall]

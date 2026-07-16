@@ -3,7 +3,7 @@ const lp = "lp",
   mp = "mp",
   cb = "cb"
 
-//theme filtr
+//theme filter
 const themeNames = {
   lp: "Love & Peace",
   ga: "Growth & Adventure",
