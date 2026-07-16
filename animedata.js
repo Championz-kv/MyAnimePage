@@ -17,7 +17,7 @@ const animewatching = [
     image: "images/tensura.jpg",
     season: "Season 4",
     status: "Airing (Fridays)",
-    onEps: 13,
+    onEps: 14,
     totalEps: 60,
   },
   {
@@ -25,7 +25,7 @@ const animewatching = [
     image: "images/liar-game.png",
     season: "",
     status: "Airing (Mondays)",
-    onEps: 13,
+    onEps: 14,
     totalEps: 24,
   },
   {
@@ -33,7 +33,7 @@ const animewatching = [
     image: "images/hana-kimi.jpg",
     season: "Season 2",
     status: "Airing (Wednesdays)",
-    onEps: 3,
+    onEps: 4,
     totalEps: 12,
   },
   {
@@ -41,7 +41,7 @@ const animewatching = [
     image: "images/rich-girl-caretaker.png",
     season: "",
     status: "Airing (Saturdays)",
-    onEps: 1,
+    onEps: 2,
     totalEps: 12,
   },
   {
@@ -49,7 +49,7 @@ const animewatching = [
     image: "images/grand-blue-dreaming.png",
     season: "Season 3",
     status: "Airing (Mondays)",
-    onEps: 1,
+    onEps: 2,
     totalEps: 12,
   },
   {
@@ -57,7 +57,7 @@ const animewatching = [
     image: "images/you-and-i-are-polar-opposites.jpg",
     season: "Season 2 (final)",
     status: "Airing (Sundays)",
-    onEps: 1,
+    onEps: 2,
     totalEps: 12,
   },
   {
@@ -65,8 +65,16 @@ const animewatching = [
     image: "images/smoking-behind-the-supermarket-with-you.png",
     season: "",
     status: "Airing (Thursdays)",
-    onEps: 1,
+    onEps: 2,
     totalEps: 12,
+  },
+  {
+    name: "Love Unseen Beneath the Clear Night Sky",
+    image: "images/love-unseen-beneath-the-clear-night-sky.jpg",
+    season: "",
+    status: "Airing (Mondays)",
+    onEps: 2,
+    totalEps: 8,
   },
 ]
 
@@ -468,6 +476,12 @@ const animeall = [
     image: "images/liar-game.png",
     released: "2026-04",
     theme: [mp],
+  },
+  {
+    name: "Love Unseen Beneath the Clear Night Sky",
+    image: "images/love-unseen-beneath-the-clear-night-sky.jpg",
+    released: "2026-07",
+    theme: [lp],
   },
 
   {
