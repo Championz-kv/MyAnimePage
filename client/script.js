@@ -313,7 +313,6 @@ function sortAnime() {
             b.released.localeCompare(a.released)
           )
   }
-
 }
 
 const themeSelect = document.getElementById("theme-select")
