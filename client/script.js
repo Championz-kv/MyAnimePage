@@ -6,7 +6,7 @@ const MODE = {
 }
 let currentMode = MODE.WATCHED
 
-// filter and sort options 
+// filter and sort options
 let searchText = ""
 let selectedThemes = new Set()
 const SORT = { OFF: 0, ASC: 1, DESC: 2 }
@@ -50,10 +50,56 @@ function getCardText(anime) {
   `
   }
 
-// render grid
-let animefiltered = [...animeall]
-let animeList = [...animefiltered]
+// active source list depending on current mode
+function getBaseList() {
+  if (currentMode === MODE.WATCHED) return animeall
+  if (currentMode === MODE.WATCHING) return animewatching
+  return animeplan
+}
 
+// the list actually shown on screen (base list, filtered + sorted)
+let animeList = []
+
+// single unified filter + sort function
+// applies selectedThemes, searchText and sortState to the active mode's list
+// (theme/search/sort controls only exist in watched mode, so this only
+// has a visible effect there - other modes just show their base list)
+function updateAnimeList() {
+  let list = [...getBaseList()]
+
+  if (currentMode === MODE.WATCHED) {
+
+    if (selectedThemes.size > 0) {
+      list = list.filter(anime =>
+        anime.theme.some(theme => selectedThemes.has(theme))
+      )
+    }
+
+    if (searchText !== "") {
+      list = list.filter(anime =>
+        anime.name.toLowerCase().includes(searchText)
+      )
+    }
+
+    if (sortState.alpha !== SORT.OFF) {
+      if (sortState.alpha === SORT.DESC) {
+        list = list.toReversed()
+      }
+    }
+
+    else if (sortState.time !== SORT.OFF) {
+      list = list.sort((a, b) =>
+        sortState.time === SORT.ASC
+          ? a.released.localeCompare(b.released)
+          : b.released.localeCompare(a.released)
+      )
+    }
+  }
+
+  animeList = list
+}
+
+// render grid
 const numberOfColumns = 5
 const grid = document.getElementById("anime-grid")
 
@@ -72,22 +118,12 @@ function renderAnimeGrid() {
     columns.push(column)
   }
 
-  let displayList
-  if (currentMode === MODE.WATCHED)
-    displayList = animeList
-
-  else if (currentMode === MODE.WATCHING)
-    displayList = animewatching
-
-  else
-    displayList = animeplan
-
-  const completeRows = Math.floor(displayList.length / numberOfColumns)
+  const completeRows = Math.floor(animeList.length / numberOfColumns)
   const normalCount = completeRows * numberOfColumns
 
   // Fill all complete rows
   for (let index = 0; index < normalCount; index++) {
-    const anime = displayList[index]
+    const anime = animeList[index]
     const card = document.createElement("div")
     card.classList.add("anime-card")
     card.classList.add(currentMode)
@@ -99,7 +135,7 @@ function renderAnimeGrid() {
   }
 
   // Create last incomplete row
-  const remaining = displayList.length - normalCount
+  const remaining = animeList.length - normalCount
 
   const lastRowPositions = {
     1: [2],
@@ -112,7 +148,7 @@ function renderAnimeGrid() {
     const positions = lastRowPositions[remaining]
 
     for (let i = 0; i < remaining; i++) {
-      const anime = displayList[normalCount + i]
+      const anime = animeList[normalCount + i]
       const card = document.createElement("div")
       card.classList.add("anime-card")
       card.classList.add(currentMode)
@@ -125,12 +161,14 @@ function renderAnimeGrid() {
 
   if (selectedThemes.size === 0) {
     document.getElementById("anime-count").textContent =
-      `Showing all ${displayList.length} anime.`
+      `Showing all ${animeList.length} anime.`
   } else {
     document.getElementById("anime-count").textContent =
-      `Showing selected ${displayList.length} anime.`
+      `Showing selected ${animeList.length} anime.`
   }
 }
+
+updateAnimeList()
 renderAnimeGrid()
 
 // background lines
@@ -168,18 +206,21 @@ const planBtn = document.getElementById("mode-plan-btn")
 watchedBtn.addEventListener("click", () => {
   currentMode = MODE.WATCHED
   updateModeUI()
+  updateAnimeList()
   renderAnimeGrid()
 })
 
 watchingBtn.addEventListener("click", () => {
   currentMode = MODE.WATCHING
   updateModeUI()
+  updateAnimeList()
   renderAnimeGrid()
 })
 
 planBtn.addEventListener("click", () => {
   currentMode = MODE.PLAN
   updateModeUI()
+  updateAnimeList()
   renderAnimeGrid()
 })
 
@@ -242,15 +283,15 @@ function togglebtn() {
 
 sortBtnalpha.addEventListener("click", () => {
   toggleAlpha()
-  sortAnime()
   togglebtn()
+  updateAnimeList()
   renderAnimeGrid()
 })
 
 sortBtntime.addEventListener("click", () => {
   toggleTime()
-  sortAnime()
   togglebtn()
+  updateAnimeList()
   renderAnimeGrid()
 })
 
@@ -274,47 +315,6 @@ function updateThemeTags() {
   })
 }
 
-// sort and filters
-function filter() {
-  if (selectedThemes.size === 0) {
-    animefiltered = [...animeall]
-  }
-  else {
-    animefiltered = animeall.filter(anime =>
-      anime.theme.some(theme => selectedThemes.has(theme))
-    )
-  }
-
-  if (searchText !== "") {
-    animefiltered = animefiltered.filter(anime =>
-      anime.name.toLowerCase().includes(searchText)
-    )
-  }
-}
-
-function sortAnime() {
-
-  if (sortState.alpha !== SORT.OFF) {
-
-    animeList =
-      sortState.alpha === SORT.ASC
-        ? [...animefiltered]
-        : [...animefiltered].toReversed()
-  }
-
-  else if (sortState.time !== SORT.OFF) {
-
-    animeList =
-      sortState.time === SORT.ASC
-        ? [...animefiltered].sort((a, b) =>
-            a.released.localeCompare(b.released)
-          )
-        : [...animefiltered].sort((a, b) =>
-            b.released.localeCompare(a.released)
-          )
-  }
-}
-
 const themeSelect = document.getElementById("theme-select")
 themeSelect.addEventListener("change", () => {
   const selected = themeSelect.value
@@ -330,8 +330,7 @@ themeSelect.addEventListener("change", () => {
     selectedThemes.clear()
   }
   updateThemeTags()
-  filter()
-  sortAnime()
+  updateAnimeList()
   renderAnimeGrid()
   themeSelect.value = ""
 })
@@ -340,7 +339,6 @@ const searchBox = document.getElementById("search-box")
 searchBox.addEventListener("input", () => {
     searchText = searchBox.value.trim().toLowerCase()
 
-    filter()
-    sortAnime()
+    updateAnimeList()
     renderAnimeGrid()
 })
