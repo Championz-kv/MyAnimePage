@@ -52,18 +52,20 @@ function getCardText(anime) {
 
 // active source list depending on current mode
 function getBaseList() {
-  if (currentMode === MODE.WATCHED) return animeall
-  if (currentMode === MODE.WATCHING) return animewatching
-  return animeplan
-}
 
+    if (currentMode === MODE.WATCHED)
+        return animeData.filter(anime => anime.watched)
+
+    if (currentMode === MODE.WATCHING)
+        return animeData.filter(anime => anime.watching)
+
+    return animeData.filter(anime => anime.planned)
+
+}
 // the list actually shown on screen (base list, filtered + sorted)
 let animeList = []
 
 // single unified filter + sort function
-// applies selectedThemes, searchText and sortState to the active mode's list
-// (theme/search/sort controls only exist in watched mode, so this only
-// has a visible effect there - other modes just show their base list)
 function updateAnimeList() {
   let list = [...getBaseList()]
 
@@ -167,9 +169,6 @@ function renderAnimeGrid() {
       `Showing selected ${animeList.length} anime.`
   }
 }
-
-updateAnimeList()
-renderAnimeGrid()
 
 // background lines
 const colors = [
