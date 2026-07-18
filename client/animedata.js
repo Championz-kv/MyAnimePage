@@ -11,13 +11,9 @@ const themeNames = {
   cb: "Conflict & Battle",
 }
 
-console.log("animedata.js loaded")
-
 let animeData = []
 
 async function loadAnimeData() {
-
-    console.log("loadAnimeData called")
 
     try {
         const response = await fetch("/api/anime")

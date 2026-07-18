@@ -30,11 +30,11 @@ function getCardText(anime) {
     <img src="${anime.image}">
     <p>
       ${anime.name}
-      ${anime.season ? `<span class="season">(${anime.season})</span>` : ""}
+      ${anime.season ? `<span class="season">(Season ${anime.season})</span>` : ""}
       <br>
       <span class="status">Status : ${anime.status}</span>
       <br>
-      <span class="episodes"><strong>${anime.onEps} / ${anime.totalEps}</strong> Episodes</span>
+      <span class="episodes"><strong>${anime.current_episode} / ${anime.total_episodes}</strong> Episodes</span>
     </p>
   `
   }
