@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MyAnimePage — Editor</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="stylesheet" href="/mod/style.css" />
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">MyAnimePage<small>Mod / Admin Panel</small></div>
+    <nav>
+      <button class="nav-item active" data-page="view">View/Modify Anime</button>
+      <button class="nav-item" data-page="add">Add Anime</button>
+      <button class="nav-item" data-page="edit">Edit Anime</button>
+      <button class="nav-item" data-page="delete">Delete Anime</button>
+      <button class="nav-item" data-page="watching">Update Watching List</button>
+      <button class="nav-item" data-page="changes">Current Changes <span class="count" id="changesCount"></span></button>
+    </nav>
+    <div class="logout-area">
+      <button id="logoutBtn">Log Out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ================= VIEW AND MODIFY ================= -->
+    <section id="page-view" class="page">
+      <h2>View/Modify Anime</h2>
+      <p class="page-desc">All anime currently in the database.</p>
+      <div class="panel">
+        <table class="classic">
+          <thead>
+            <tr>
+              <th>Img</th><th>ID</th><th>Name</th><th>Watched</th><th>Watching</th>
+              <th>Planned</th><th>Status</th><th>Last Updated</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="viewTableBody">
+            <tr class="loading-row"><td colspan="9">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= ADD ANIME ================= -->
+    <section id="page-add" class="page" style="display:none;">
+      <h2>Add Anime</h2>
+      <p class="page-desc">New entries are staged — nothing is written to the database until you commit them.</p>
+      <div class="panel">
+        <form id="addForm" class="form-grid">
+          <div class="field">
+            <label>ID</label>
+            <input type="text" id="add_id_display" value="(auto-generated)" disabled />
+          </div>
+          <div class="field">
+            <label for="add_name">Name *</label>
+            <input type="text" id="add_name" required />
+          </div>
+
+          <div class="field">
+            <label>Image</label>
+            <div class="image-upload-box" id="add_imageBox">
+              <div class="hint">Click or drag an image here to upload</div>
+              <div class="path-shown" id="add_imagePathShown"></div>
+            </div>
+            <input type="file" id="add_imageFile" accept="image/*" style="display:none;" />
+            <input type="hidden" id="add_image_path" />
+          </div>
+
+          <div class="checkbox-row">
+            <label><input type="checkbox" id="add_watched" /> Watched</label>
+            <label><input type="checkbox" id="add_watching" /> Watching</label>
+            <label><input type="checkbox" id="add_planned" /> Planned</label>
+          </div>
+
+          <div class="field">
+            <label for="add_status">Status (for watching or planned anime)</label>
+            <input type="text" id="add_status" placeholder="e.g. Completed, Airing, On Hold" />
+          </div>
+
+          <div class="field">
+            <label for="add_info">Info</label>
+            <textarea id="add_info"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="add_release_month">Release Date</label>
+            <input type="date" id="add_release_month" />
+          </div>
+
+          <div class="checkbox-row">
+            <label><input type="checkbox" id="add_love_peace" /> Love / Peace</label>
+            <label><input type="checkbox" id="add_growth_adventure" /> Growth / Adventure</label>
+          </div>
+          <div class="checkbox-row">
+            <label><input type="checkbox" id="add_mind_psychology" /> Mind / Psychology</label>
+            <label><input type="checkbox" id="add_conflict_battle" /> Conflict / Battle</label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success">Save Changes (stage add)</button>
+            <button type="button" class="btn btn-secondary" id="addCancelBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= EDIT ANIME ================= -->
+    <section id="page-edit" class="page" style="display:none;">
+      <h2>Edit Anime</h2>
+      <p class="page-desc">Search by ID or name, then edit a matching entry.</p>
+      <div class="panel">
+        <div class="search-row">
+          <input type="text" id="editSearchInput" placeholder="Search by ID or name..." />
+          <button class="btn" id="editSearchBtn">Search</button>
+        </div>
+        <table class="classic" id="editSearchTable" style="display:none;">
+          <thead><tr><th>ID</th><th>Name</th><th></th></tr></thead>
+          <tbody id="editSearchResults"></tbody>
+        </table>
+
+        <div id="editFormWrap" style="display:none; margin-top: 24px;">
+          <h3 style="font-size:14px; margin-bottom:12px;">Editing: <span id="editFormAnimeName"></span></h3>
+          <form id="editForm" class="form-grid">
+            <input type="hidden" id="edit_id" />
+            <div class="field">
+              <label>ID</label>
+              <input type="text" id="edit_id_display" disabled />
+            </div>
+            <div class="field">
+              <label for="edit_name">Name *</label>
+              <input type="text" id="edit_name" required />
+            </div>
+
+            <div class="field">
+              <label>Image</label>
+              <div class="image-upload-box" id="edit_imageBox">
+                <img class="preview" id="edit_imagePreview" style="display:none;" />
+                <div class="hint">Click or drag an image here to replace</div>
+                <div class="path-shown" id="edit_imagePathShown"></div>
+              </div>
+              <input type="file" id="edit_imageFile" accept="image/*" style="display:none;" />
+              <input type="hidden" id="edit_image_path" />
+            </div>
+
+            <div class="checkbox-row">
+              <label><input type="checkbox" id="edit_watched" /> Watched</label>
+              <label><input type="checkbox" id="edit_watching" /> Watching</label>
+              <label><input type="checkbox" id="edit_planned" /> Planned</label>
+            </div>
+
+            <div class="field">
+              <label for="edit_status">Status (for watching or planned anime)</label>
+              <input type="text" id="edit_status" />
+            </div>
+
+            <div class="field">
+              <label for="edit_info">Info</label>
+              <textarea id="edit_info"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="edit_release_month">Release Date</label>
+              <input type="date" id="edit_release_month" />
+            </div>
+
+            <div class="checkbox-row">
+              <label><input type="checkbox" id="edit_love_peace" /> Love / Peace</label>
+              <label><input type="checkbox" id="edit_growth_adventure" /> Growth / Adventure</label>
+            </div>
+            <div class="checkbox-row">
+              <label><input type="checkbox" id="edit_mind_psychology" /> Mind / Psychology</label>
+              <label><input type="checkbox" id="edit_conflict_battle" /> Conflict / Battle</label>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success">Save Changes (stage edit)</button>
+              <button type="button" class="btn btn-secondary" id="editCancelBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DELETE ANIME ================= -->
+    <section id="page-delete" class="page" style="display:none;">
+      <h2>Delete Anime</h2>
+      <p class="page-desc">Search by ID or name, then stage a deletion.</p>
+      <div class="panel">
+        <div class="search-row">
+          <input type="text" id="deleteSearchInput" placeholder="Search by ID or name..." />
+          <button class="btn" id="deleteSearchBtn">Search</button>
+        </div>
+        <table class="classic" id="deleteSearchTable" style="display:none;">
+          <thead><tr><th>ID</th><th>Name</th><th></th></tr></thead>
+          <tbody id="deleteSearchResults"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= UPDATE WATCHING LIST ================= -->
+    <section id="page-watching" class="page" style="display:none;">
+      <h2>Update Watching List</h2>
+      <p class="page-desc">Anime currently marked as watching.</p>
+      <div class="page-header-row">
+        <div></div>
+        <button class="btn btn-success" id="watchingSaveBtn">Save Changes</button>
+      </div>
+      <div class="tile-grid" id="watchingTiles">
+        <div class="empty-state">Loading...</div>
+      </div>
+    </section>
+
+    <!-- ================= CURRENT CHANGES ================= -->
+    <section id="page-changes" class="page" style="display:none;">
+      <h2>Current Changes</h2>
+      <p class="page-desc">Staged changes for this session. Nothing here has touched the database yet.</p>
+      <div class="page-header-row">
+        <div></div>
+        <button class="btn btn-success" id="commitBtn">Commit All Changes to Database</button>
+      </div>
+      <div class="panel">
+        <table class="classic">
+          <thead><tr><th>Type</th><th>Anime</th><th>Details</th><th></th></tr></thead>
+          <tbody id="changesTableBody">
+            <tr><td colspan="4" class="empty-state">No pending changes.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Small edit dialogue used by the Watching List tiles -->
+<div class="modal-overlay" id="fieldModal">
+  <div class="modal-box">
+    <h3 id="fieldModalTitle">Edit field</h3>
+    <div class="old-value">Current value: <b id="fieldModalOldValue"></b></div>
+    <input type="text" id="fieldModalInput" style="width:100%; padding:8px; border:1px solid var(--border-dark);" />
+    <div class="modal-actions">
+      <button class="btn btn-secondary btn-small" id="fieldModalCancel">Cancel</button>
+      <button class="btn btn-small" id="fieldModalSave">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/mod/js/editor.js"></script>
+</body>
+</html>

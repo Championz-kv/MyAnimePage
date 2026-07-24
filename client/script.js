@@ -66,6 +66,14 @@ function getBaseList() {
 let animeList = []
 
 // single unified filter + sort function
+function getSortName(name) {
+  const trimmed = name.trim()
+  if (trimmed.toLowerCase().startsWith("the ")) {
+    return trimmed.slice(4)
+  }
+  return trimmed
+}
+
 function updateAnimeList() {
   let list = [...getBaseList()]
 
@@ -84,9 +92,11 @@ function updateAnimeList() {
     }
 
     if (sortState.alpha !== SORT.OFF) {
-      if (sortState.alpha === SORT.DESC) {
-        list = list.toReversed()
-      }
+      list.sort((a, b) =>
+        sortState.alpha === SORT.ASC
+          ? getSortName(a.name).localeCompare(getSortName(b.name))
+          : getSortName(b.name).localeCompare(getSortName(a.name))
+      )
     }
 
     else if (sortState.time !== SORT.OFF) {
@@ -131,7 +141,6 @@ function renderAnimeGrid() {
     card.classList.add(currentMode)
 
     card.innerHTML = getCardText(anime)
-
     const columnIndex = index % numberOfColumns
     columns[columnIndex].appendChild(card)
   }
@@ -194,9 +203,7 @@ for (let i = 0; i < 30; i++) {
 
 //buttons
 const headerText = document.getElementById("header-text")
-
 const mainControls = document.getElementById("main-controls")
-
 const watchedBtn = document.getElementById("mode-watched-btn")
 watchedBtn.style.display = "none"
 const watchingBtn = document.getElementById("mode-watching-btn")
