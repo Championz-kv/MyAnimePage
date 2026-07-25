@@ -1,44 +1,23 @@
 import path from "path"
-import fs from "fs"
-import { fileURLToPath } from "url"
 import multer from "multer"
+import { createClient } from "@supabase/supabase-js"
 
 import pool from "../db/database.js"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
 // -----------------------------------------------------------------------
-// Image upload (multer) — saves into client/images, same folder the
-// showcase site already serves images from, so image_path values stay
-// in the same "images/filename.ext" format it already expects.
+// Image upload — goes to a Supabase Storage bucket instead of local disk,
+// since Vercel's filesystem is read-only/ephemeral at runtime. Existing
+// anime rows with "images/xxx.jpg" (served from client/images) keep
+// working unchanged; only NEW uploads get a full Supabase URL instead.
 // -----------------------------------------------------------------------
-const IMAGES_DIR = path.join(__dirname, "..", "..", "client", "images")
-if (!fs.existsSync(IMAGES_DIR)) fs.mkdirSync(IMAGES_DIR, { recursive: true })
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, IMAGES_DIR),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname)
-    const base = path
-      .basename(file.originalname, ext)
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "") || "image"
-
-    let candidate = `${base}${ext}`
-    let counter = 1
-    while (fs.existsSync(path.join(IMAGES_DIR, candidate))) {
-      candidate = `${base}-${counter}${ext}`
-      counter++
-    }
-    cb(null, candidate)
-  },
-})
+const supabase =
+  process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
+    ? createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
+    : null
+const BUCKET = process.env.SUPABASE_BUCKET || "anime-images"
 
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
   limits: { fileSize: 8 * 1024 * 1024 }, // 8MB
   fileFilter: (req, file, cb) => {
     if (!file.mimetype.startsWith("image/")) return cb(new Error("Only image files are allowed."))
@@ -48,10 +27,62 @@ const upload = multer({
 
 export const uploadMiddleware = upload.single("image")
 
-export function uploadImage(req, res) {
+export function resolveImagePath(req, res) {
+  if (!supabase) {
+    return res.status(500).json({
+      success: false,
+      message: "Image storage isn't configured — set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.",
+    })
+  }
+  const filename = (req.query.filename || "").trim()
+  if (!filename) return res.status(400).json({ success: false, message: "filename is required." })
+
+  const { data } = supabase.storage.from(BUCKET).getPublicUrl(filename)
+  res.json({ success: true, path: data.publicUrl })
+}
+
+export async function uploadImage(req, res) {
+  if (!supabase) {
+    return res.status(500).json({
+      success: false,
+      message: "Image storage isn't configured — set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.",
+    })
+  }
   if (!req.file) return res.status(400).json({ success: false, message: "No image received." })
-  const relativePath = `images/${req.file.filename}`
-  res.json({ success: true, path: relativePath })
+
+  const ext = path.extname(req.file.originalname)
+  const base = path
+    .basename(req.file.originalname, ext)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "image"
+
+  let candidate = `${base}${ext}`
+  let counter = 1
+
+  try {
+    while (true) {
+      const { error } = await supabase.storage.from(BUCKET).upload(candidate, req.file.buffer, {
+        contentType: req.file.mimetype,
+        upsert: false,
+      })
+      if (!error) break
+
+      const already = (error.message || "").toLowerCase().includes("exist") || error.statusCode === "409"
+      if (!already) throw error
+
+      candidate = `${base}-${counter}${ext}`
+      counter++
+      if (counter > 50) throw new Error("Too many filename collisions.")
+    }
+
+    const { data } = supabase.storage.from(BUCKET).getPublicUrl(candidate)
+    res.json({ success: true, path: data.publicUrl })
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ success: false, message: "Image upload failed: " + err.message })
+  }
 }
 
 // -----------------------------------------------------------------------

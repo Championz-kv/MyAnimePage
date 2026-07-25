@@ -9,6 +9,7 @@ import {
   getNextId,
   uploadMiddleware,
   uploadImage,
+  resolveImagePath,
   getChanges,
   addChange,
   removeChange,
@@ -29,6 +30,7 @@ router.use(requireModAuth)
 router.get("/anime", getAllAnime)
 router.get("/anime/search", searchAnime)
 router.get("/anime/next-id", getNextId)
+router.get("/anime/resolve-image-path", resolveImagePath)
 router.get("/anime/:id", getAnimeById)
 
 router.post("/upload-image", uploadMiddleware, uploadImage)

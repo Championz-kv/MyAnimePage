@@ -36,6 +36,11 @@ function boolBadge(val) {
   return val ? '<span class="badge yes">Yes</span>' : '<span class="badge no">No</span>';
 }
 
+function resolveImageSrc(p) {
+  if (!p) return "";
+  return /^https?:\/\//i.test(p) ? p : "/" + p;
+}
+
 // ---------- auth / session guard ----------
 (async function guardSession() {
   try {
@@ -85,7 +90,7 @@ async function loadViewTable() {
       .map(
         (a) => `
       <tr>
-        <td>${a.image_path ? `<img class="thumb" src="/${a.image_path}" onerror="this.style.visibility='hidden'" />` : ""}</td>
+        <td>${a.image_path ? `<img class="thumb" src="${resolveImageSrc(a.image_path)}" onerror="this.style.visibility='hidden'" />` : ""}</td>
         <td>${a.id}</td>
         <td>${escapeHtml(a.name)}</td>
         <td>${boolBadge(a.watched)}</td>
@@ -164,6 +169,8 @@ $("addForm").addEventListener("submit", async (e) => {
     conflict_battle: $("add_conflict_battle").checked,
   };
   if (!data.name) return toast("Name is required.", "error");
+  if (!data.image_path) return toast("An image is required.", "error");
+  if (!data.release_month) return toast("Release date is required.", "error");
 
   try {
     await api("/changes", {
@@ -223,6 +230,23 @@ async function runSearch(context) {
 
 setupImageUpload("edit_imageBox", "edit_imageFile", "edit_image_path", "edit_imagePathShown", "edit_imagePreview");
 
+$("edit_setImagePathBtn").addEventListener("click", async () => {
+  const filename = $("edit_image_filename").value.trim();
+  if (!filename) return toast("Type a filename first.", "error");
+
+  try {
+    const data = await api(`/anime/resolve-image-path?filename=${encodeURIComponent(filename)}`);
+    $("edit_image_path").value = data.path;
+    $("edit_imagePathShown").textContent = data.path;
+    const preview = $("edit_imagePreview");
+    preview.src = resolveImageSrc(data.path);
+    preview.style.display = "block";
+    toast("Image path set. Remember to Save Changes to stage it.", "success");
+  } catch (err) {
+    toast(err.message, "error");
+  }
+});
+
 async function loadAnimeIntoEditForm(id) {
   try {
     const data = await api(`/anime/${id}`);
@@ -235,9 +259,10 @@ async function loadAnimeIntoEditForm(id) {
     $("edit_name").value = a.name || "";
     $("edit_image_path").value = a.image_path || "";
     $("edit_imagePathShown").textContent = a.image_path || "";
+    $("edit_image_filename").value = "";
     const preview = $("edit_imagePreview");
     if (a.image_path) {
-      preview.src = "/" + a.image_path;
+      preview.src = resolveImageSrc(a.image_path);
       preview.style.display = "block";
     } else {
       preview.style.display = "none";
@@ -345,7 +370,7 @@ async function uploadImage(file, hiddenPathId, shownId, previewId) {
     $(shownId).textContent = data.path;
     if (previewId) {
       const preview = $(previewId);
-      preview.src = "/" + data.path;
+      preview.src = resolveImageSrc(data.path);
       preview.style.display = "block";
     }
     toast("Image uploaded.", "success");

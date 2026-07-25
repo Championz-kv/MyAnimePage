@@ -63,7 +63,7 @@
           </div>
 
           <div class="field">
-            <label>Image</label>
+            <label>Image *</label>
             <div class="image-upload-box" id="add_imageBox">
               <div class="hint">Click or drag an image here to upload</div>
               <div class="path-shown" id="add_imagePathShown"></div>
@@ -84,13 +84,13 @@
           </div>
 
           <div class="field">
-            <label for="add_info">Info</label>
+            <label for="add_info">Info (for planned animes)</label>
             <textarea id="add_info"></textarea>
           </div>
 
           <div class="field">
-            <label for="add_release_month">Release Date</label>
-            <input type="date" id="add_release_month" />
+            <label for="add_release_month">Release Date *</label>
+            <input type="date" id="add_release_month" required />
           </div>
 
           <div class="checkbox-row">
@@ -146,6 +146,15 @@
               </div>
               <input type="file" id="edit_imageFile" accept="image/*" style="display:none;" />
               <input type="hidden" id="edit_image_path" />
+
+              <div class="field" style="margin-top:10px;">
+                <label for="edit_image_filename">Or set image path directly (filename only, with extension)</label>
+                <div style="display:flex; gap:8px;">
+                  <input type="text" id="edit_image_filename" placeholder="e.g. chainsaw-man.png" style="flex:1;" />
+                  <button type="button" class="btn btn-small" id="edit_setImagePathBtn">Use This Filename</button>
+                </div>
+                <div class="hint" style="margin-top:4px;">Points the database entry at an image already sitting in the bucket — doesn't upload anything.</div>
+              </div>
             </div>
 
             <div class="checkbox-row">
@@ -160,7 +169,7 @@
             </div>
 
             <div class="field">
-              <label for="edit_info">Info</label>
+              <label for="edit_info">Info (for planned animes)</label>
               <textarea id="edit_info"></textarea>
             </div>
 
